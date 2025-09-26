@@ -7,9 +7,15 @@
 #
 # This profile includes comprehensive Infoblox MIB support based on actual device capabilities:
 #
+# IB-PLATFORMONE-MIB:
+# - System Status and Performance metrics
+# - Service Status Counters (5 different counter types)
+#
 # IB-DHCPONE-MIB:
 # - DHCP Subnet Table with percentage usage (OID .1.3.6.1.4.1.7779.3.1.1.4.1.1.1.3)
 # - DHCP Statistics counters (Discovers, Requests, Releases, Offers, ACKs, NACKs, Declines, Informs, Others)
+# - DHCP Extended Statistics (10 additional counter types)
+# - DHCP Performance Statistics (4 Counter64 and 4 Gauge32 metrics)
 # - DHCP DDNS Statistics (Average latency and timeout counts for 5min, 15min, 60min, 1440min intervals)
 # - DHCP Deferred Queue Size
 #
@@ -19,8 +25,6 @@
 # - DDNS Update Statistics (Success, Failure, Reject, Prerequisite Reject)
 # - Zone Transfer Count Statistics
 # - DNS Query Rate
-#
-# Note: Platform metrics (CPU, Memory, Service Status) are not available on this device
 ---
 extends:
   - if-mib.yml
@@ -83,6 +87,44 @@ sysobjectid:
   - 1.3.6.1.4.1.7779.3.7       # IB-2000-A
 
 metrics:
+  # Platform Metrics - System Status and Performance
+  - MIB: IB-PLATFORMONE-MIB
+    symbol:
+      name: ibSystemStatus
+      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.3.1.1.0
+      poll_time_sec: 60
+      tag: SystemStatus
+  # Platform Metrics - Service Status Counters
+  - MIB: IB-PLATFORMONE-MIB
+    symbol:
+      name: ibServiceStatusCounter1
+      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.3.1.4.1.6.0
+      poll_time_sec: 60
+      tag: ServiceStatusCounter1
+  - MIB: IB-PLATFORMONE-MIB
+    symbol:
+      name: ibServiceStatusCounter2
+      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.3.1.4.2.6.0
+      poll_time_sec: 60
+      tag: ServiceStatusCounter2
+  - MIB: IB-PLATFORMONE-MIB
+    symbol:
+      name: ibServiceStatusCounter3
+      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.3.1.4.3.0
+      poll_time_sec: 60
+      tag: ServiceStatusCounter3
+  - MIB: IB-PLATFORMONE-MIB
+    symbol:
+      name: ibServiceStatusCounter4
+      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.3.1.4.4.0
+      poll_time_sec: 60
+      tag: ServiceStatusCounter4
+  - MIB: IB-PLATFORMONE-MIB
+    symbol:
+      name: ibServiceStatusCounter5
+      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.3.1.4.5.0
+      poll_time_sec: 60
+      tag: ServiceStatusCounter5
   # The size of deferred dynamic DNS update queue
   - MIB: IB-DHCPONE-MIB
     symbol:
@@ -220,6 +262,116 @@ metrics:
       OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.9
       poll_time_sec: 60
       tag: DhcpOthers
+  # Additional DHCP Statistics - Extended counters
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter1
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.1.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter1
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter2
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.2.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter2
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter3
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.3.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter3
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter4
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.4.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter4
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter5
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.5.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter5
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter6
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.6.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter6
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter7
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.7.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter7
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter8
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.8.0.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter8
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter9
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.9.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter9
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpExtendedCounter10
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.3.10.0
+      poll_time_sec: 60
+      tag: DhcpExtendedCounter10
+  # Additional DHCP Statistics - Performance metrics
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpPerformanceCounter1
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.5.1.0
+      poll_time_sec: 60
+      tag: DhcpPerformanceCounter1
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpPerformanceCounter2
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.5.2.0
+      poll_time_sec: 60
+      tag: DhcpPerformanceCounter2
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpPerformanceCounter3
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.5.3.0
+      poll_time_sec: 60
+      tag: DhcpPerformanceCounter3
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpPerformanceCounter4
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.5.4.0
+      poll_time_sec: 60
+      tag: DhcpPerformanceCounter4
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpPerformanceGauge1
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.5.5.0
+      poll_time_sec: 60
+      tag: DhcpPerformanceGauge1
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpPerformanceGauge2
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.5.6.0
+      poll_time_sec: 60
+      tag: DhcpPerformanceGauge2
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpPerformanceGauge3
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.5.7.0
+      poll_time_sec: 60
+      tag: DhcpPerformanceGauge3
+  - MIB: IB-DHCPONE-MIB
+    symbol:
+      name: ibDhcpPerformanceGauge4
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.2.5.8.0
+      poll_time_sec: 60
+      tag: DhcpPerformanceGauge4
   # DHCP DDNS Statistics - Average latency metrics
   - MIB: IB-DHCPONE-MIB
     symbol:
