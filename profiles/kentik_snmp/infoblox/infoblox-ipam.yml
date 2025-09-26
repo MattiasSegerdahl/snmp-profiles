@@ -1,16 +1,17 @@
-# http://www.circitor.fr/Mibs/Html/I/IB-SMI-MIB.php
-# http://www.circitor.fr/Mibs/Html/I/IB-PLATFORMONE-MIB.php
-# http://www.circitor.fr/Mibs/Html/I/IB-DHCPONE-MIB.php
-# http://www.circitor.fr/Mibs/Html/I/IB-DNSONE-MIB.php
+# https://circitor.fr/Mibs/Html/IB-SMI-MIB.php
+# https://circitor.fr/Mibs/Html/IB-PLATFORMONE-MIB.php
+# https://circitor.fr/Mibs/Html/IB-DHCPONE-MIB.php
+# https://circitor.fr/Mibs/Html/IB-DNSONE-MIB.php
 # https://mibs.observium.org/mib/IB-DHCPONE-MIB/
 # https://mibs.observium.org/mib/IB-DNSONE-MIB/
-# 
-# This profile includes comprehensive Infoblox MIB support:
-# 
+#
+# This profile includes comprehensive Infoblox MIB support based on actual device capabilities:
+#
 # IB-DHCPONE-MIB:
 # - DHCP Subnet Table with percentage usage (OID .1.3.6.1.4.1.7779.3.1.1.4.1.1.1.3)
 # - DHCP Statistics counters (Discovers, Requests, Releases, Offers, ACKs, NACKs, Declines, Informs, Others)
 # - DHCP DDNS Statistics (Average latency and timeout counts for 5min, 15min, 60min, 1440min intervals)
+# - DHCP Deferred Queue Size
 #
 # IB-DNSONE-MIB:
 # - Zone Statistics Table (Success, Referral, NXRRset, NXDomain, Recursion, Failure)
@@ -18,6 +19,8 @@
 # - DDNS Update Statistics (Success, Failure, Reject, Prerequisite Reject)
 # - Zone Transfer Count Statistics
 # - DNS Query Rate
+#
+# Note: Platform metrics (CPU, Memory, Service Status) are not available on this device
 ---
 extends:
   - if-mib.yml
@@ -80,20 +83,6 @@ sysobjectid:
   - 1.3.6.1.4.1.7779.3.7       # IB-2000-A
 
 metrics:
-  # Current average CPU usage
-  - MIB: IB-PLATFORMONE-MIB
-    symbol:
-      name: ibSystemMonitorCpuUsage
-      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.8.1.1.0
-      poll_time_sec: 60
-      tag: CPU
-  # Current Memory usage
-  - MIB: IB-PLATFORMONE-MIB
-    symbol:
-      name: ibSystemMonitorMemUsage
-      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.8.2.1.0
-      poll_time_sec: 60
-      tag: MemoryUtilization
   # The size of deferred dynamic DNS update queue
   - MIB: IB-DHCPONE-MIB
     symbol:
@@ -340,100 +329,5 @@ metrics:
         column:
           name: ibBindViewName
           OID: 1.3.6.1.4.1.7779.3.1.1.3.1.2.1.8
-  # A table of Physical Node's Grid Replication Status.
-  - MIB: IB-PLATFORMONE-MIB
-    table:
-      name: ibClusterReplicationStatusTable
-      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.2
-    symbols:
-      # Sent queue size from master.
-      - name: ibNodeQueueFromMaster
-        OID: 1.3.6.1.4.1.7779.3.1.1.2.1.2.1.3
-      # Receive queue size to master.
-      - name: ibNodeQueueToMaster
-        OID: 1.3.6.1.4.1.7779.3.1.1.2.1.2.1.5
-    metric_tags:
-      # Physical node IP address.
-      - column:
-          name: ibNodeIPAddress
-          OID: 1.3.6.1.4.1.7779.3.1.1.2.1.2.1.1
-      # Replication queue status for this node.
-      - column:
-          name: ibNodeReplicationStatus
-          OID: 1.3.6.1.4.1.7779.3.1.1.2.1.2.1.2
-  # A table of member service status.
-  - MIB: IB-PLATFORMONE-MIB
-    table:
-      name: ibMemberServiceStatusTable
-      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.9
-    symbols:
-      # Service Status
-      - name: ibServiceStatus
-        OID: 1.3.6.1.4.1.7779.3.1.1.2.1.9.1.2
-        enum:
-          working: 1
-          warning: 2
-          failed: 3
-          inactive: 4
-          unknown: 5
-    metric_tags:
-      # Service Name
-      - column:
-          name: ibServiceName
-          OID: 1.3.6.1.4.1.7779.3.1.1.2.1.9.1.1
-          enum:
-            dhcp: 1
-            dns: 2
-            ntp: 3
-            radius: 4
-            tftp: 5
-            http-file-dist: 6
-            ftp: 7
-            bloxtools-move: 8
-            bloxtools: 9
-            node-status: 10
-            disk-usage: 11
-            enet-lan: 12
-            enet-lan2: 13
-            enet-ha: 14
-            enet-mgmt: 15
-            lcd: 16
-            memory: 17
-            replication: 18
-            db-object: 19
-            raid-summary: 20
-            raid-disk1: 21
-            raid-disk2: 22
-            raid-disk3: 23
-            raid-disk4: 24
-            fan1: 25
-            fan2: 26
-            fan3: 27
-            power-supply: 28
-            ntp-sync: 29
-            cpu1-temp: 30
-            cpu2-temp: 31
-            sys-temp: 32
-            raid-battery: 33
-            cpu-usage: 34
-            ospf: 35
-            bgp: 36
-      # Service Description
-      - column:
-          name: ibServiceDescription
-          OID: 1.3.6.1.4.1.7779.3.1.1.2.1.9.1.3
 
 metric_tags:
-  # Infoblox One hardware type
-  - column:
-      name: ibHardwareType
-      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.4.0
-  # Infoblox One device serial number
-  - column:
-      name: ibSerialNumber
-      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.6.0
-    tag: serial_number
-  # Infoblox One NIOS version
-  - column:
-      name: ibNiosVersion
-      OID: 1.3.6.1.4.1.7779.3.1.1.2.1.7.0
