@@ -211,55 +211,55 @@ metrics:
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDhcpTotalNoOfDiscovers
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.1
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.1.0
       poll_time_sec: 60
       tag: DhcpDiscovers
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDhcpTotalNoOfRequests
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.2
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.2.0
       poll_time_sec: 60
       tag: DhcpRequests
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDhcpTotalNoOfReleases
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.3
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.3.0
       poll_time_sec: 60
       tag: DhcpReleases
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDhcpTotalNoOfOffers
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.4
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.4.0
       poll_time_sec: 60
       tag: DhcpOffers
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDhcpTotalNoOfAcks
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.5
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.5.0
       poll_time_sec: 60
       tag: DhcpAcks
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDhcpTotalNoOfNacks
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.6
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.6.0
       poll_time_sec: 60
       tag: DhcpNacks
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDhcpTotalNoOfDeclines
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.7
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.7.0
       poll_time_sec: 60
       tag: DhcpDeclines
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDhcpTotalNoOfInforms
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.8
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.8.0
       poll_time_sec: 60
       tag: DhcpInforms
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDhcpTotalNoOfOthers
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.9
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.3.9.0
       poll_time_sec: 60
       tag: DhcpOthers
   # Additional DHCP Statistics - Extended counters
@@ -376,50 +376,50 @@ metrics:
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDHCPDDNSAvgLatency5
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.1
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.1.0
       poll_time_sec: 60
       tag: DhcpDdnsLatency5min
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDHCPDDNSAvgLatency15
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.2
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.2.0
       poll_time_sec: 60
       tag: DhcpDdnsLatency15min
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDHCPDDNSAvgLatency60
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.3
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.3.0
       poll_time_sec: 60
       tag: DhcpDdnsLatency60min
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDHCPDDNSAvgLatency1440
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.4
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.4.0
       poll_time_sec: 60
       tag: DhcpDdnsLatency1440min
   # DHCP DDNS Timeout Counts
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDHCPDDNSTimeoutCount5
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.5
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.5.0
       poll_time_sec: 60
       tag: DhcpDdnsTimeout5min
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDHCPDDNSTimeoutCount15
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.6
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.6.0
       poll_time_sec: 60
       tag: DhcpDdnsTimeout15min
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDHCPDDNSTimeoutCount60
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.7
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.7.0
       poll_time_sec: 60
       tag: DhcpDdnsTimeout60min
   - MIB: IB-DHCPONE-MIB
     symbol:
       name: ibDHCPDDNSTimeoutCount1440
-      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.8
+      OID: 1.3.6.1.4.1.7779.3.1.1.4.1.5.8.0
       poll_time_sec: 60
       tag: DhcpDdnsTimeout1440min
   # DNS queries per second
